@@ -37,7 +37,7 @@ public class SecurityController {
 	
 	@GetMapping("/admin/list")
 	public String showAdminList(Model model) {
-		model.addAttribute("user", userRepository.findAll());
+		model.addAttribute("users", userRepository.findAll());
 		return "list";
 	}
 	
@@ -58,6 +58,7 @@ public class SecurityController {
 		} else {
 			user.setRole(Role.USER.name());
 		}
+		userRepository.save(user);
 		
 		return "redirect:/login?register";
 	}
